@@ -13,18 +13,22 @@ $(document).ready(function(){
 
 	/*Create an action when user clicks new*/
   	$(".new").click(function(){
-  		console.log('hello');
+  		$('#guessList').text('Yes'); //You added this recently
   	});
 
-
+  	var randomNumber;
+	
 	function newGame() {
+
 		
-		var randomNumber = Math.floor((Math.random() * 100) + 1);
 		var guessList = [];
 
 		$(".new").click(function(){
 		$('#feedback').text('NEW GAME BEGINS NOW').css('background-color', 'green');
+		randomNumber = Math.floor((Math.random() * 100) + 1);
 		console.log(randomNumber);
+		guessList = []; //You added this recently
+
 		});
 
 		$(".button").click(function(e){
