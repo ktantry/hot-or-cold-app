@@ -34,16 +34,13 @@ $(document).ready(function(){
 
 	  		if (((guess <= 100) && (guess >= 0) && (isNaN(guess) == false))) {  
 
-/*(isNaN(guess) == false) && */
 				console.log(guess);
 				console.log(randomNumber);
 
-				guessList.push(guess);
-				console.log(guessList);
-				$('#count').text(guessList.length);
+
 
 				var newGuess = $('<li>' + guess + '</li>');
-				$('#guessList').append(newGuess);
+				
 
 				var a = randomNumber - 50;
 				var b = randomNumber + 50;
@@ -52,7 +49,35 @@ $(document).ready(function(){
 				var e = randomNumber - 10;
 				var f = randomNumber + 10;
 
-				if ( guess < a || guess > b)   {
+				lastGuess = guessList[guessList.length - 1];
+				guessList.push(guess);
+
+				var lastGuessDiff = Math.abs(lastGuess - randomNumber);
+				var thisGuessDiff = Math.abs(guess - randomNumber);
+				$('#guessList').append(newGuess);
+
+				if ((isNaN(lastGuessDiff) == true) && (guess != randomNumber)) {
+					$('#feedback').text('Guess Again');
+				}
+				else if (guess == randomNumber) {
+					$('#feedback').text('You Got It');
+					guessList = [];
+					$('#guessList').text('')
+				}
+				else if (lastGuessDiff == thisGuessDiff) {
+					$('#feedback').text('Neither Hotter nor Colder');
+				}
+				else if (lastGuessDiff > thisGuessDiff) {
+					$('#feedback').text('Hotter');
+				}
+				else {
+					$('#feedback').text('Colder');
+				}
+
+				
+
+
+/*				if ( guess < a || guess > b)   {
 					$('#feedback').text('Not Even Close');
 				}
 				else if (guess < f && guess > randomNumber) {
@@ -72,12 +97,18 @@ $(document).ready(function(){
 				}
 				else {
 					$('#feedback').text('Cold');
-				}
+				}*/
+
+
+
+				console.log(guessList);
+				$('#count').text(guessList.length);
 
 			}
 			else {
 				alert('EXCEPTION: Please enter a valid number');  //I added this else statement as well
 			}
+
 		});	
 	}	
 	newGame();

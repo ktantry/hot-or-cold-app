@@ -13,22 +13,21 @@ $(document).ready(function(){
 
 	/*Create an action when user clicks new*/
   	$(".new").click(function(){
-  		$('#guessList').text('Yes'); //You added this recently
+  		$('#guessList').text(''); //You added this recently
   	});
 
   	var randomNumber;
 	
 	function newGame() {
 
-		
 		var guessList = [];
 
 		$(".new").click(function(){
 		$('#feedback').text('NEW GAME BEGINS NOW').css('background-color', 'green');
 		randomNumber = Math.floor((Math.random() * 100) + 1);
 		console.log(randomNumber);
-		guessList = []; //You added this recently
-
+		guessList = [];
+		$('#count').text('0') //You added this recently
 		});
 
 		$(".button").click(function(e){
@@ -62,8 +61,6 @@ $(document).ready(function(){
 				}
 				else if (guess == randomNumber) {
 					$('#feedback').text('You Got It');
-					guessList = [];
-					$('#guessList').text('')
 				}
 				else if (lastGuessDiff == thisGuessDiff) {
 					$('#feedback').text('Neither Hotter nor Colder');
